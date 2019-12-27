@@ -3,12 +3,11 @@
 HW - Burger2
 Live Link
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 6a59928ef345f296d03ea60a199047592d2a76c0
-Description on how to use the Burger2 application
+
+
+------Description on how to use the Burger2 application----
 Enter the name of a hamburger that you would like to eat. You can make up any type of hamburger and hit the submit button.
 
 After the hamburger is posted to the page, you can eat it by pressing the 'DEVOUR IT' button.
