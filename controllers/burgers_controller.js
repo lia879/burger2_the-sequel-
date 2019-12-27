@@ -2,7 +2,7 @@
 var express = require("express");
 var router = express.Router();
 var db = require("../models");
-var bodyParser = require("body-parser");
+
 
 
 // show all the burger data in the database 
@@ -38,14 +38,15 @@ router.post("/burgers/create", function (req, res) {
 
 
 // put route -> back to index
-router.put("/burgers/update", function (req, res) {
+router.post("/burgers/update/:id", function (req, res) {
+    console.log("PUT", req.params)
     var eaten = {
         devoured: 1
     }
     db.burgers.update(eaten, {
 
         where: {
-            id: req.body.burger_id
+            id: req.params.id
         }
     }).then(function (result) {
         console.log(result);

@@ -1,47 +1,35 @@
+//require express
 var express = require("express");
-var bodyParser = require("body-parser");
-var methodOverride = require("method-override");
-var Sequelize = require("sequelize");
-
-var port = process.env.PORT || 3000;
-
-
-// Requiring our models for syncing
-var db = require("./models");
-
-db.burgers.sync();
-
-var app = express();
-// Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static(__dirname + "/public"));
-
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
-// override with POST having ?_method=DELETE
-app.use(methodOverride("_method"));
+//require express-handlebars
 var exphbs = require("express-handlebars");
+//require body-parser                                
+var bodyParser = require("body-parser");
+//require burgers_controllers
+var routes = require("./controllers/burgers_controller.js");
+//express call using app
+var app = express();
+//local host port 8080                        
+var PORT = process.env.PORT || 8080;
+var db = require("./models")
+//public folder
+app.use(express.static("public"));
 
+//parses JSON
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+//handlebars run using main for content
 app.engine("handlebars", exphbs({
     defaultLayout: "main"
 }));
+
 app.set("view engine", "handlebars");
 
-var routes = require("./controllers/burgers_controller");
+//calls api routes
+app.use(routes);
 
-app.use("/", routes);
-app.use("/burgers", routes)
-// app.use("/update", routes);
-// app.use("/create", routes);
-app.use("/burgers/create", routes);
-app.use("/burgers/update", routes);
-app.use("/api/all", routes);
-
-// require("./controllers/burgers_controller.js")(app);
-
-// listen on port 3000
-
-app.listen(port, function () {
-    console.log("listening on port " + port);
-});
+db.sequelize.sync().then(function () {
+    app.listen(PORT, function () {
+        console.log("Listening on Port: " + PORT);
+    })
+})
