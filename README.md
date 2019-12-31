@@ -32,3 +32,6 @@ A connection to the MySQL database is created with Sequelize in the config/conne
 The burgers_controller.js file is where the routes are defined.
 
 Sequelize methods such as findAll(), create(), and update() replaced the previous vanilla MySQL queries.
+
+
+![image](https://user-images.githubusercontent.com/54521457/71628662-9ca41100-2bbe-11ea-8865-507fca72b0f0.png)
