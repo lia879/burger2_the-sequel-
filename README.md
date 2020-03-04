@@ -1,6 +1,6 @@
 # burger2_the-sequel-
 
-Live Link:
+Live Link: https://burger-2-sequelize.herokuapp.com/burgers
 
 
 
